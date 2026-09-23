@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mercado João — Sistema de Gestão</title>
+<style>
+:root{--bg:#070a11;--panel:#101724;--panel2:#141d2c;--line:#26344d;--text:#f7f8fc;--muted:#929db2;--purple:#765cff;--green:#29d79b;--orange:#ffbd62;--red:#ff6877}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% 0,#182044 0,transparent 32%),var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif}.sidebar{position:fixed;z-index:20;inset:0 auto 0 0;width:250px;background:#0a0f18f5;border-right:1px solid var(--line);padding:16px 13px}.brand{display:flex;align-items:center;gap:11px;padding:8px 10px 25px}.logo{width:43px;height:43px;border-radius:13px;display:grid;place-items:center;font-weight:900;background:linear-gradient(135deg,#765cff,#28d79b);box-shadow:0 12px 30px #765cff30}.brand b{display:block}.brand small{color:var(--muted)}.nav{display:grid;gap:4px}.nav button{width:100%;border:0;background:transparent;color:#909bb0;padding:11px 12px;border-radius:11px;text-align:left;cursor:pointer;display:flex;align-items:center;gap:11px}.nav button:hover,.nav button.active{background:#182132;color:#fff}.nav .icon{width:22px;text-align:center}.main{margin-left:250px;padding:25px 30px;min-height:100vh}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}.topLeft{display:flex;align-items:center;gap:10px}.top h1{margin:0;font-size:28px}.top p{margin:5px 0 0;color:var(--muted)}.user{display:flex;align-items:center;gap:10px;background:var(--panel);border:1px solid var(--line);padding:8px 12px;border-radius:13px}.avatar{width:35px;height:35px;border-radius:10px;background:#2a354c;display:grid;place-items:center;font-weight:800}.mobile{display:none}.page{display:none;animation:fade .2s ease}.page.active{display:block}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.card{background:linear-gradient(180deg,#101826,#0d131e);border:1px solid var(--line);border-radius:17px;padding:18px;box-shadow:0 18px 50px #0002}.metric strong{display:block;font-size:26px;margin:11px 0 4px}.metric span{color:var(--muted);font-size:13px}.green{color:var(--green)}.orange{color:var(--orange)}.red{color:var(--red)}.layout{display:grid;grid-template-columns:1.5fr 1fr;gap:14px;margin-top:14px}.head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:13px}.head h3{margin:0;font-size:16px}.btn{border:1px solid #30405b;background:#151f30;color:#fff;padding:9px 13px;border-radius:10px;cursor:pointer}.btn:hover{border-color:#66789b}.primary{border:0;background:linear-gradient(135deg,#765cff,#5f75ff)}.chart{height:210px;display:flex;align-items:end;gap:10px;padding:15px 4px}.bar{flex:1;border-radius:7px 7px 2px 2px;background:linear-gradient(180deg,#806aff,#5140b8);animation:grow .7s ease}.bar small{display:block;transform:translateY(25px);text-align:center;color:var(--muted)}.alert{padding:12px;border:1px solid var(--line);background:#111927;border-radius:11px;margin-bottom:8px;color:#b8c1d1}.alert b{color:#fff}.table{overflow:auto}.table table{width:100%;border-collapse:collapse;min-width:620px}.table th,.table td{text-align:left;padding:13px;border-bottom:1px solid #1c2738;font-size:13px}.table th{color:#78859c}.pill{display:inline-block;padding:5px 8px;border-radius:20px;background:#15372f;color:#5ae2b0;font-size:11px}.pill.warn{background:#3d2f18;color:#ffc66d}.toolbar{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:13px}.search{flex:1;min-width:190px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#0b111b;color:#fff}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.list{display:grid;gap:9px}.row{display:flex;justify-content:space-between;gap:12px;padding:12px;background:#111a28;border:1px solid #202d42;border-radius:11px}.row small{display:block;color:var(--muted);margin-top:4px}.field label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}.field input,.field select{width:100%;padding:11px;border-radius:10px;border:1px solid var(--line);background:#0b111b;color:#fff}.formgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.scannerArea{display:flex;gap:9px;align-items:center}.scannerArea .field{flex:1}.scanBtn{white-space:nowrap}.scannerStatus{font-size:12px;color:var(--muted);margin-top:7px}.scannerStatus.ok{color:var(--green)}.scannerStatus.warn{color:var(--orange)}.productRow{align-items:center}.qty{display:flex;align-items:center;gap:7px}.qty button{width:28px;height:28px;border-radius:8px;border:1px solid #30405b;background:#151f30;color:#fff;cursor:pointer}.totalLine{display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-bottom:1px solid #1c2738}.cameraModal{position:fixed;inset:0;background:#000b;z-index:100;display:none;align-items:center;justify-content:center;padding:20px}.cameraModal.open{display:flex}.cameraBox{width:min(520px,100%);background:#101724;border:1px solid var(--line);border-radius:18px;padding:16px}.cameraBox video{width:100%;border-radius:12px;background:#000;display:block}.cameraActions{display:flex;gap:9px;margin-top:10px}.cameraActions .btn{flex:1}.scanFrame{position:absolute;inset:30% 15%;border:2px solid #29d79b;border-radius:14px;box-shadow:0 0 0 9999px #0004;pointer-events:none}.cameraViewport{position:relative}.toast{position:fixed;right:20px;bottom:20px;background:#172438;border:1px solid #344561;padding:12px 15px;border-radius:11px;display:none;z-index:50}.toast.show{display:block}@keyframes grow{from{height:0}}@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+@media(max-width:900px){.sidebar{transform:translateX(-100%);transition:.25s}.sidebar.open{transform:translateX(0)}.main{margin-left:0;padding:17px}.mobile{display:block;border:1px solid var(--line);background:var(--panel);color:#fff;border-radius:10px;padding:8px 11px}.user{display:none}.cards{grid-template-columns:1fr 1fr}.layout,.grid2{grid-template-columns:1fr}}
+@media(max-width:520px){.cards{gap:8px}.card{padding:14px}.metric strong{font-size:20px}.top h1{font-size:22px}.formgrid{grid-template-columns:1fr}}
+
+.muted{color:var(--muted)}.trend{margin-top:5px;font-size:12px}.miniSelect{padding:8px 10px;border-radius:9px;border:1px solid var(--line);background:#0b111b;color:#fff}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.pdvGrid{display:grid;grid-template-columns:1.5fr .8fr;gap:14px}.grand{font-size:20px}.cpfBox{margin:15px 0;padding:13px;border:1px solid var(--line);border-radius:12px;background:#0c1421}.cpfBox>div{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}.payGrid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:15px}.pay{min-height:72px;border:1px solid var(--line);border-radius:12px;background:#111a28;color:#fff;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px}.pay:hover,.report:hover{transform:translateY(-2px);border-color:#61749a}.pay.wide{grid-column:1/-1}.empty{text-align:center;color:var(--muted);padding:28px;border:1px dashed #2b3b55;border-radius:12px;margin-top:10px}.linkBtn{border:0;background:none;color:#8e9cff;cursor:pointer}.iconBtn{border:1px solid var(--line);background:#121c2b;color:#fff;border-radius:8px;padding:6px 8px;cursor:pointer}.dangerBtn:hover{border-color:var(--red)}.alert.danger{border-color:#58313a}.alert.warn{border-color:#5a4827}.alert.success{border-color:#285746}.flow{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.flow div{padding:15px;border:1px solid var(--line);border-radius:12px;background:#111a28}.flow span,.flow b{display:block}.flow b{margin-top:8px}.reportGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:15px}.report{display:flex;flex-direction:column;gap:8px;padding:18px;border:1px solid var(--line);border-radius:14px;background:#111a28;cursor:pointer;transition:.2s}.report small{color:var(--muted);line-height:1.5}.settingsRows{display:grid;gap:10px;margin-top:14px}.settingsRows label{display:flex;justify-content:space-between;align-items:center;padding:12px;border:1px solid var(--line);border-radius:11px;background:#111a28}.modal{position:fixed;inset:0;background:#000b;z-index:120;display:none;align-items:center;justify-content:center;padding:18px}.modal.open{display:flex}.modalBox{width:min(650px,100%);max-height:90vh;overflow:auto;background:#0f1724;border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 30px 100px #0008}.modalBox h3{margin:0}.modalFoot{display:flex;justify-content:flex-end;gap:8px;margin-top:18px}.modalClose{background:transparent;border:0;color:#aeb8ca;font-size:22px;cursor:pointer}.quickGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.quick{padding:11px;border:1px solid var(--line);border-radius:10px;background:#111a28;color:#fff;cursor:pointer}
+@media(max-width:1000px){.pdvGrid,.grid3,.reportGrid{grid-template-columns:1fr 1fr}.flow{grid-template-columns:1fr}}
+@media(max-width:700px){.pdvGrid,.grid3,.reportGrid{grid-template-columns:1fr}.payGrid{grid-template-columns:1fr}.pay.wide{grid-column:auto}}
+
+</style>
+</head>
+<body>
+<aside class="sidebar" id="sidebar">
+  <div class="brand"><div class="logo">M</div><div><b>Mercado João</b><small>Sistema de gestão</small></div></div>
+  <nav class="nav" id="nav">
+    <button data-page="dashboard" class="active"><span class="icon">⌂</span>Dashboard</button>
+    <button data-page="pdv"><span class="icon">🛒</span>PDV</button>
+    <button data-page="produtos"><span class="icon">📦</span>Produtos</button>
+    <button data-page="estoque"><span class="icon">▤</span>Estoque</button>
+    <button data-page="vendas"><span class="icon">🧾</span>Vendas</button>
+    <button data-page="clientes"><span class="icon">👥</span>Clientes</button>
+    <button data-page="funcionarios"><span class="icon">👤</span>Funcionários</button>
+    <button data-page="fornecedores"><span class="icon">🚚</span>Fornecedores</button>
+    <button data-page="compras"><span class="icon">🛍️</span>Compras</button>
+    <button data-page="financeiro"><span class="icon">💰</span>Financeiro</button>
+    <button data-page="relatorios"><span class="icon">📈</span>Relatórios</button>
+    <button data-page="promocoes"><span class="icon">🎯</span>Promoções</button>
+    <button data-page="config"><span class="icon">⚙️</span>Configurações</button>
+  </nav>
+</aside>
+
+<main class="main">
+<header class="top">
+  <div class="topLeft"><button class="mobile" id="menuBtn">☰</button><div><h1 id="pageTitle">Dashboard</h1><p id="pageSubtitle">Visão geral do seu comércio</p></div></div>
+  <div class="user"><div class="avatar">J</div><div><b>João</b><small style="display:block;color:var(--muted)">Administrador</small></div></div>
+</header>
+
+<section class="page active" id="dashboard">
+  <div class="cards">
+    <div class="card metric">💵<strong>R$ 8.426,50</strong><span>Vendas hoje</span><div class="green trend">↑ 12,8% vs. ontem</div></div>
+    <div class="card metric">🛒<strong>184</strong><span>Vendas realizadas</span><div class="green trend">↑ 8,4% hoje</div></div>
+    <div class="card metric">🎯<strong>R$ 45,80</strong><span>Ticket médio</span><div class="green trend">↑ 4,1%</div></div>
+    <div class="card metric">📦<strong>23</strong><span>Produtos em alerta</span><div class="orange trend">Atenção necessária</div></div>
+  </div>
+  <div class="layout">
+    <div class="card">
+      <div class="head"><h3>Vendas dos últimos 7 dias</h3><select class="miniSelect" onchange="showToast('Período alterado')"><option>Esta semana</option><option>Últimos 30 dias</option><option>Este mês</option></select></div>
+      <div class="chart"><div class="bar" style="height:42%"><small>Seg</small></div><div class="bar" style="height:58%"><small>Ter</small></div><div class="bar" style="height:48%"><small>Qua</small></div><div class="bar" style="height:75%"><small>Qui</small></div><div class="bar" style="height:64%"><small>Sex</small></div><div class="bar" style="height:92%"><small>Sáb</small></div><div class="bar" style="height:70%"><small>Dom</small></div></div>
+    </div>
+    <div class="card">
+      <div class="head"><h3>🚨 Radar do Mercado</h3><button class="btn" onclick="navigate('estoque')">Ver tudo</button></div>
+      <div class="alert danger">🔴 <b>5 produtos</b> abaixo do estoque mínimo.</div>
+      <div class="alert warn">🟡 <b>8 produtos</b> vencem nos próximos 30 dias.</div>
+      <div class="alert success">🟢 Leite integral vendeu <b>31% mais</b> esta semana.</div>
+    </div>
+  </div>
+  <div class="grid3" style="margin-top:14px">
+    <div class="card"><div class="head"><h3>💡 Oportunidade</h3></div><p class="muted">Arroz 5kg está vendendo acima da média.</p><button class="btn primary" onclick="navigate('compras')">Planejar compra</button></div>
+    <div class="card"><div class="head"><h3>🤖 Assistente</h3></div><p class="muted">Pergunte sobre vendas, estoque e margem.</p><button class="btn primary" onclick="openModal('aiModal')">Abrir assistente</button></div>
+    <div class="card"><div class="head"><h3>💰 Caixa</h3></div><p class="muted">Caixa aberto · Operador João · R$ 1.284,50.</p><button class="btn" onclick="navigate('pdv')">Abrir PDV</button></div>
+  </div>
+  <div class="card" style="margin-top:14px">
+    <div class="head"><h3>Vendas recentes</h3><button class="btn" onclick="navigate('vendas')">Ver todas</button></div>
+    <div class="table"><table><thead><tr><th>Venda</th><th>Cliente</th><th>Pagamento</th><th>Total</th><th>Status</th></tr></thead>
+    <tbody id="recentSales"><tr><td>#00482</td><td>Consumidor</td><td>PIX</td><td>R$ 86,40</td><td><span class="pill">Concluída</span></td></tr><tr><td>#00481</td><td>Mariana</td><td>Débito</td><td>R$ 132,70</td><td><span class="pill">Concluída</span></td></tr><tr><td>#00480</td><td>Consumidor</td><td>Dinheiro</td><td>R$ 47,90</td><td><span class="pill">Concluída</span></td></tr></tbody></table></div>
+  </div>
+</section>
+
+<section class="page" id="pdv">
+  <div class="pdvGrid">
+    <div class="card">
+      <div class="head"><div><h3>🛒 Caixa #01</h3><span class="muted">Operador: João · Caixa aberto</span></div><button class="btn" onclick="openModal('cashModal')">Movimentar caixa</button></div>
+      <div class="scannerArea"><div class="field"><label>Código de barras</label><input id="barcode" class="search" autofocus placeholder="Bipe ou digite o código e pressione Enter" onkeydown="handleBarcodeKey(event)"></div><button class="btn primary scanBtn" onclick="openCamera()">📷 Câmera</button></div>
+      <div id="scannerStatus" class="scannerStatus">Leitor USB/Bluetooth pronto.</div>
+      <div class="toolbar" style="margin-top:12px"><button class="btn" onclick="openProductPicker()">🔎 Buscar produto</button><button class="btn" onclick="openModal('suspendModal')">⏸ Suspender venda</button><button class="btn" onclick="clearCart()">🗑 Limpar carrinho</button></div>
+      <div id="cart" class="list" style="margin-top:8px"></div>
+      <div class="empty" id="cartEmpty">Carrinho vazio. Bipe um produto para começar.</div>
+    </div>
+    <div class="card">
+      <div class="head"><h3>Resumo da venda</h3><span class="pill">Venda #00483</span></div>
+      <div class="totalLine"><span>Itens</span><b id="cartItems">0</b></div>
+      <div class="totalLine"><span>Subtotal</span><b id="subtotal">R$ 0,00</b></div>
+      <div class="totalLine"><span>Desconto</span><button class="linkBtn" onclick="openModal('discountModal')">Adicionar</button></div>
+      <div class="totalLine grand"><span>Total</span><b id="grandTotal">R$ 0,00</b></div>
+      <div class="cpfBox"><b>Deseja informar o CPF na nota?</b><div><button class="btn" onclick="openModal('cpfModal')">Informar CPF</button><button class="btn" onclick="showToast('Venda seguirá sem CPF')">Continuar sem CPF</button></div></div>
+      <div class="payGrid"><button class="pay" onclick="finishSale('Dinheiro')">💵<b>Dinheiro</b></button><button class="pay" onclick="finishSale('PIX')">🔷<b>PIX</b></button><button class="pay" onclick="finishSale('Débito')">💳<b>Débito</b></button><button class="pay" onclick="finishSale('Crédito')">💳<b>Crédito</b></button><button class="pay wide" onclick="openModal('mixedModal')">↔️<b>Pagamento misto</b></button></div>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="produtos">
+  <div class="card">
+    <div class="head"><div><h3>📦 Produtos</h3><span class="muted">1.284 produtos cadastrados</span></div><button class="btn primary" onclick="openModal('productModal')">+ Novo produto</button></div>
+    <div class="toolbar"><input class="search" placeholder="🔎 Buscar por nome, SKU ou código..." oninput="filterTable(this,'productsTable')"><select class="search" style="flex:0 0 180px"><option>Todas categorias</option><option>Bebidas</option><option>Mercearia</option><option>Hortifruti</option><option>Limpeza</option></select><button class="btn" onclick="showToast('Importação aberta')">Importar</button><button class="btn" onclick="showToast('Exportação preparada')">Exportar</button></div>
+    <div class="table"><table id="productsTable"><thead><tr><th>Produto</th><th>Código</th><th>Categoria</th><th>Custo</th><th>Preço</th><th>Estoque</th><th>Ações</th></tr></thead><tbody>
+      <tr><td><b>Coca-Cola 2L</b><small>Refrigerantes</small></td><td>7894900011517</td><td>Bebidas</td><td>R$ 6,20</td><td>R$ 9,90</td><td><span class="pill">42</span></td><td><button class="iconBtn" onclick="editRow(this)">✏️</button><button class="iconBtn dangerBtn" onclick="deleteRow(this)">🗑</button></td></tr>
+      <tr><td><b>Arroz 5kg</b><small>Tipo 1</small></td><td>7894900010107</td><td>Mercearia</td><td>R$ 21,00</td><td>R$ 28,90</td><td><span class="pill warn">8</span></td><td><button class="iconBtn" onclick="editRow(this)">✏️</button><button class="iconBtn dangerBtn" onclick="deleteRow(this)">🗑</button></td></tr>
+      <tr><td><b>Leite Integral 1L</b><small>Longa vida</small></td><td>7891001</td><td>Mercearia</td><td>R$ 3,70</td><td>R$ 5,49</td><td><span class="pill">63</span></td><td><button class="iconBtn" onclick="editRow(this)">✏️</button><button class="iconBtn dangerBtn" onclick="deleteRow(this)">🗑</button></td></tr>
+      <tr><td><b>Feijão 1kg</b><small>Carioca</small></td><td>7891004</td><td>Mercearia</td><td>R$ 6,00</td><td>R$ 8,49</td><td><span class="pill warn">5</span></td><td><button class="iconBtn" onclick="editRow(this)">✏️</button><button class="iconBtn dangerBtn" onclick="deleteRow(this)">🗑</button></td></tr>
+    </tbody></table></div>
+  </div>
+</section>
+
+<section class="page" id="estoque">
+  <div class="cards"><div class="card metric">📦<strong>1.284</strong><span>Total de itens</span></div><div class="card metric">🔴<strong>5</strong><span>Sem estoque</span></div><div class="card metric">🟡<strong>23</strong><span>Abaixo do mínimo</span></div><div class="card metric">⏰<strong>8</strong><span>Próximos da validade</span></div></div>
+  <div class="card" style="margin-top:14px"><div class="head"><h3>Controle de estoque</h3><div><button class="btn" onclick="openModal('stockEntryModal')">+ Entrada</button> <button class="btn" onclick="openModal('adjustModal')">Ajustar</button> <button class="btn primary" onclick="openModal('inventoryModal')">Inventário</button></div></div>
+    <div class="toolbar"><input class="search" placeholder="🔎 Buscar produto"><select class="search" style="flex:0 0 180px"><option>Todos</option><option>Sem estoque</option><option>Abaixo do mínimo</option><option>Próximos do vencimento</option></select></div>
+    <div class="table"><table><thead><tr><th>Produto</th><th>Estoque</th><th>Mínimo</th><th>Máximo</th><th>Validade</th><th>Status</th><th>Ação</th></tr></thead><tbody>
+      <tr><td><b>Arroz 5kg</b></td><td>8</td><td>20</td><td>80</td><td>15/10/2026</td><td><span class="pill warn">Comprar</span></td><td><button class="btn" onclick="openModal('stockEntryModal')">Entrada</button></td></tr>
+      <tr><td><b>Feijão 1kg</b></td><td>5</td><td>15</td><td>60</td><td>22/11/2026</td><td><span class="pill warn">Comprar</span></td><td><button class="btn" onclick="openModal('stockEntryModal')">Entrada</button></td></tr>
+      <tr><td><b>Leite Integral 1L</b></td><td>63</td><td>30</td><td>100</td><td>04/10/2026</td><td><span class="pill">Normal</span></td><td><button class="btn" onclick="openModal('adjustModal')">Ajustar</button></td></tr>
+    </tbody></table></div>
+  </div>
+  <div class="card" style="margin-top:14px"><div class="head"><h3>🤖 Previsão inteligente</h3></div><div class="row"><span><b>Leite Integral 1L</b><small>Venda média: 18 un./dia · estoque para 3,5 dias</small></span><button class="btn primary" onclick="showToast('Compra recomendada: 60 unidades')">Comprar 60</button></div></div>
+</section>
+
+<section class="page" id="vendas">
+  <div class="cards"><div class="card metric">💵<strong>R$ 58.240</strong><span>Faturamento no mês</span></div><div class="card metric">🧾<strong>1.284</strong><span>Vendas no mês</span></div><div class="card metric">🎯<strong>R$ 45,36</strong><span>Ticket médio</span></div><div class="card metric">↩️<strong>R$ 420</strong><span>Devoluções</span></div></div>
+  <div class="card" style="margin-top:14px"><div class="head"><h3>Histórico de vendas</h3><button class="btn primary" onclick="navigate('pdv')">+ Nova venda</button></div><div class="toolbar"><input class="search" placeholder="🔎 Buscar número, cliente ou operador"><select class="search" style="flex:0 0 170px"><option>Todos pagamentos</option><option>PIX</option><option>Dinheiro</option><option>Débito</option><option>Crédito</option></select><button class="btn" onclick="showToast('Filtros aplicados')">Filtrar</button></div>
+  <div class="table"><table><thead><tr><th>Venda</th><th>Data</th><th>Cliente</th><th>Operador</th><th>Pagamento</th><th>Total</th><th>Ações</th></tr></thead><tbody>
+  <tr><td>#00482</td><td>23/09 10:12</td><td>Consumidor</td><td>João</td><td>PIX</td><td>R$ 86,40</td><td><button class="btn" onclick="openModal('saleDetailModal')">Detalhes</button></td></tr>
+  <tr><td>#00481</td><td>23/09 09:58</td><td>Mariana</td><td>João</td><td>Débito</td><td>R$ 132,70</td><td><button class="btn" onclick="openModal('saleDetailModal')">Detalhes</button></td></tr>
+  <tr><td>#00480</td><td>23/09 09:41</td><td>Consumidor</td><td>Maria</td><td>Dinheiro</td><td>R$ 47,90</td><td><button class="btn" onclick="openModal('saleDetailModal')">Detalhes</button></td></tr>
+  </tbody></table></div></div>
+</section>
+
+<section class="page" id="clientes">
+  <div class="card"><div class="head"><div><h3>👥 Clientes</h3><span class="muted">426 clientes cadastrados</span></div><button class="btn primary" onclick="openModal('clientModal')">+ Novo cliente</button></div>
+  <div class="toolbar"><input class="search" placeholder="🔎 Buscar nome, CPF ou telefone" oninput="filterTable(this,'clientsTable')"><button class="btn" onclick="showToast('Exportação preparada')">Exportar</button></div>
+  <div class="table"><table id="clientsTable"><thead><tr><th>Cliente</th><th>CPF</th><th>Telefone</th><th>Última compra</th><th>Ticket médio</th><th>Fidelidade</th><th>Ações</th></tr></thead><tbody>
+  <tr><td><b>Mariana Silva</b></td><td>***.***.***-20</td><td>(48) 99900-1122</td><td>Hoje</td><td>R$ 72,30</td><td><span class="pill">1.240 pts</span></td><td><button class="btn" onclick="openModal('clientDetailModal')">Ver</button></td></tr>
+  <tr><td><b>Pedro Santos</b></td><td>***.***.***-81</td><td>(48) 98800-3322</td><td>Ontem</td><td>R$ 54,10</td><td><span class="pill">680 pts</span></td><td><button class="btn" onclick="openModal('clientDetailModal')">Ver</button></td></tr>
+  </tbody></table></div></div>
+</section>
+
+<section class="page" id="funcionarios">
+  <div class="card"><div class="head"><div><h3>👤 Funcionários</h3><span class="muted">Controle de equipe e permissões</span></div><button class="btn primary" onclick="openModal('employeeModal')">+ Novo funcionário</button></div>
+  <div class="table"><table><thead><tr><th>Funcionário</th><th>Cargo</th><th>PIN</th><th>Comissão</th><th>Status</th><th>Permissões</th><th>Ações</th></tr></thead><tbody>
+  <tr><td><b>João Silva</b></td><td>Administrador</td><td>••••</td><td>—</td><td><span class="pill">Ativo</span></td><td>Todas</td><td><button class="btn" onclick="openModal('employeeModal')">Editar</button></td></tr>
+  <tr><td><b>Maria Oliveira</b></td><td>Caixa</td><td>••••</td><td>2%</td><td><span class="pill">Ativo</span></td><td>PDV, vendas</td><td><button class="btn" onclick="openModal('employeeModal')">Editar</button></td></tr>
+  <tr><td><b>Lucas Costa</b></td><td>Gerente</td><td>••••</td><td>1%</td><td><span class="pill">Ativo</span></td><td>PDV, estoque, compras</td><td><button class="btn" onclick="openModal('employeeModal')">Editar</button></td></tr>
+  </tbody></table></div></div>
+  <div class="card" style="margin-top:14px"><div class="head"><h3>🛡️ Auditoria</h3><button class="btn" onclick="showToast('Log completo aberto')">Ver log</button></div><div class="list"><div class="row"><span><b>João</b> cancelou uma venda #00471<small>23/09/2026 · 10:03</small></span><span class="red">R$ 87,50</span></div><div class="row"><span><b>Maria</b> abriu o caixa #01<small>23/09/2026 · 08:02</small></span><span class="green">Registrado</span></div></div></div>
+</section>
+
+<section class="page" id="fornecedores">
+  <div class="card"><div class="head"><div><h3>🚚 Fornecedores</h3><span class="muted">42 fornecedores ativos</span></div><button class="btn primary" onclick="openModal('supplierModal')">+ Novo fornecedor</button></div>
+  <div class="toolbar"><input class="search" placeholder="🔎 Buscar fornecedor"><button class="btn" onclick="showToast('Lista exportada')">Exportar</button></div>
+  <div class="table"><table><thead><tr><th>Fornecedor</th><th>CNPJ</th><th>Contato</th><th>Última compra</th><th>Prazo</th><th>Status</th><th>Ações</th></tr></thead><tbody>
+  <tr><td><b>Distribuidora Sul</b></td><td>12.345.678/0001-90</td><td>(48) 3333-1111</td><td>20/09/2026</td><td>7 dias</td><td><span class="pill">Ativo</span></td><td><button class="btn" onclick="openModal('supplierModal')">Editar</button></td></tr>
+  <tr><td><b>Atacado Central</b></td><td>98.765.432/0001-10</td><td>(48) 3222-4455</td><td>18/09/2026</td><td>14 dias</td><td><span class="pill">Ativo</span></td><td><button class="btn" onclick="openModal('supplierModal')">Editar</button></td></tr>
+  </tbody></table></div></div>
+</section>
+
+<section class="page" id="compras">
+  <div class="cards"><div class="card metric">🛍️<strong>R$ 18.420</strong><span>Compras no mês</span></div><div class="card metric">📋<strong>7</strong><span>Pedidos abertos</span></div><div class="card metric">⏳<strong>R$ 4.820</strong><span>A pagar</span></div><div class="card metric">💡<strong>R$ 860</strong><span>Economia potencial</span></div></div>
+  <div class="card" style="margin-top:14px"><div class="head"><h3>Pedidos de compra</h3><button class="btn primary" onclick="openModal('purchaseModal')">+ Nova compra</button></div><div class="table"><table><thead><tr><th>Pedido</th><th>Fornecedor</th><th>Itens</th><th>Total</th><th>Entrega</th><th>Status</th><th>Ações</th></tr></thead><tbody>
+  <tr><td>#PC-0192</td><td>Distribuidora Sul</td><td>32</td><td>R$ 3.840</td><td>25/09</td><td><span class="pill warn">Pendente</span></td><td><button class="btn" onclick="openModal('purchaseDetailModal')">Abrir</button></td></tr>
+  <tr><td>#PC-0191</td><td>Atacado Central</td><td>18</td><td>R$ 2.210</td><td>24/09</td><td><span class="pill">Confirmado</span></td><td><button class="btn" onclick="openModal('purchaseDetailModal')">Abrir</button></td></tr>
+  </tbody></table></div></div>
+</section>
+
+<section class="page" id="financeiro">
+  <div class="cards"><div class="card metric">💵<strong>R$ 58.240</strong><span>Receitas</span></div><div class="card metric">💸<strong>R$ 31.780</strong><span>Despesas</span></div><div class="card metric">📈<strong>R$ 26.460</strong><span>Resultado</span><div class="green trend">45,4% margem</div></div><div class="card metric">⏳<strong>R$ 5.360</strong><span>Em aberto</span></div></div>
+  <div class="grid2" style="margin-top:14px"><div class="card"><div class="head"><h3>Contas a pagar</h3><button class="btn primary" onclick="openModal('financeModal')">+ Adicionar</button></div><div class="list"><div class="row"><span>Distribuidora Sul<small>Vence 25/09</small></span><b class="red">R$ 840</b></div><div class="row"><span>Energia elétrica<small>Vence 28/09</small></span><b class="red">R$ 520</b></div><div class="row"><span>Aluguel<small>Vence 30/09</small></span><b class="red">R$ 3.200</b></div></div></div>
+  <div class="card"><div class="head"><h3>Contas a receber</h3><button class="btn primary" onclick="openModal('financeModal')">+ Adicionar</button></div><div class="list"><div class="row"><span>Cliente A<small>Vence 24/09</small></span><b class="green">R$ 390</b></div><div class="row"><span>Cliente B<small>Vence 27/09</small></span><b class="green">R$ 640</b></div></div></div></div>
+  <div class="card" style="margin-top:14px"><div class="head"><h3>Fluxo de caixa</h3><select class="miniSelect"><option>Setembro 2026</option><option>Agosto 2026</option></select></div><div class="flow"><div><span>Receitas</span><b class="green">+ R$ 58.240</b></div><div><span>Despesas</span><b class="red">− R$ 31.780</b></div><div><span>Saldo</span><b>R$ 26.460</b></div></div></div>
+</section>
+
+<section class="page" id="relatorios">
+  <div class="card"><div class="head"><div><h3>📈 Relatórios</h3><span class="muted">Escolha um relatório e personalize o período.</span></div><button class="btn" onclick="showToast('Relatório exportado em PDF')">Exportar PDF</button></div>
+  <div class="reportGrid">
+    <div class="report" onclick="generateReport('Vendas')">🧾<b>Vendas</b><small>Faturamento, quantidade, ticket e pagamentos.</small></div>
+    <div class="report" onclick="generateReport('Estoque')">📦<b>Estoque</b><small>Giro, ruptura, parados e validade.</small></div>
+    <div class="report" onclick="generateReport('Funcionários')">👤<b>Funcionários</b><small>Vendas, operadores e cancelamentos.</small></div>
+    <div class="report" onclick="generateReport('Financeiro')">💰<b>Financeiro</b><small>Receitas, despesas, margem e resultado.</small></div>
+    <div class="report" onclick="generateReport('Produtos')">🏷️<b>Produtos</b><small>Mais vendidos, margem e rentabilidade.</small></div>
+    <div class="report" onclick="generateReport('Clientes')">👥<b>Clientes</b><small>Frequência, ticket e fidelidade.</small></div>
+  </div></div>
+</section>
+
+<section class="page" id="promocoes">
+  <div class="card"><div class="head"><div><h3>🎯 Promoções</h3><span class="muted">Crie regras que o PDV aplicará automaticamente.</span></div><button class="btn primary" onclick="openModal('promotionModal')">+ Criar promoção</button></div>
+  <div class="list"><div class="row"><span><b>Leve 3, pague 2 — Refrigerantes</b><small>Até 30/09/2026 · Categoria Bebidas</small></span><span><span class="pill">Ativa</span> <button class="iconBtn" onclick="openModal('promotionModal')">✏️</button></span></div><div class="row"><span><b>10% no PIX — Hortifruti</b><small>Todos os dias · Pagamento PIX</small></span><span><span class="pill">Ativa</span> <button class="iconBtn" onclick="openModal('promotionModal')">✏️</button></span></div><div class="row"><span><b>Combo café da manhã</b><small>R$ 19,90 · 01/10 a 15/10</small></span><span><span class="pill warn">Agendada</span> <button class="iconBtn" onclick="openModal('promotionModal')">✏️</button></span></div></div></div>
+</section>
+
+<section class="page" id="config">
+  <div class="grid2">
+    <div class="card"><h3>🏪 Dados do comércio</h3><div class="formgrid" style="margin-top:15px"><div class="field"><label>Nome</label><input value="Mercado João"></div><div class="field"><label>CNPJ</label><input value="00.000.000/0001-00"></div><div class="field"><label>Telefone</label><input value="(48) 99999-9999"></div><div class="field"><label>E-mail</label><input value="contato@mercadojoao.com"></div><div class="field" style="grid-column:1/-1"><label>Endereço</label><input value="Rua Principal, 100 — Centro"></div></div><button class="btn primary" style="margin-top:15px" onclick="showToast('Dados salvos')">Salvar</button></div>
+    <div class="card"><h3>🖨️ PDV e impressão</h3><div class="list" style="margin-top:15px"><div class="row"><span>Impressora térmica<small>80mm · USB</small></span><span class="pill">Conectada</span></div><div class="row"><span>Leitor de código<small>USB / Bluetooth</small></span><span class="pill">Pronto</span></div><div class="row"><span>NFC-e<small>Emissão fiscal</small></span><span class="pill warn">Configurar</span></div></div><button class="btn primary" style="margin-top:15px" onclick="showToast('Configurações do PDV salvas')">Salvar configurações</button></div>
+  </div>
+  <div class="card" style="margin-top:14px"><h3>🔔 Preferências</h3><div class="settingsRows"><label><span>Alertar estoque baixo</span><input type="checkbox" checked></label><label><span>Alertar validade próxima</span><input type="checkbox" checked></label><label><span>Confirmar cancelamento de venda</span><input type="checkbox" checked></label><label><span>Modo escuro</span><input type="checkbox" checked></label></div></div>
+</section>
+</main>
+
+
+<div class="modal" id="productModal"><div class="modalBox"><div class="head"><h3>📦 Novo produto</h3><button class="modalClose" onclick="closeModal('productModal')">×</button></div><div class="formgrid"><div class="field"><label>Nome</label><input id="newProductName" placeholder="Ex.: Café 500g"></div><div class="field"><label>Código de barras</label><input placeholder="EAN / GTIN"></div><div class="field"><label>Categoria</label><select><option>Mercearia</option><option>Bebidas</option><option>Limpeza</option><option>Hortifruti</option></select></div><div class="field"><label>Unidade</label><select><option>UN</option><option>KG</option><option>L</option></select></div><div class="field"><label>Custo</label><input type="number" step=".01" placeholder="0,00"></div><div class="field"><label>Preço de venda</label><input type="number" step=".01" placeholder="0,00"></div><div class="field"><label>Estoque mínimo</label><input type="number" placeholder="0"></div><div class="field"><label>Estoque máximo</label><input type="number" placeholder="0"></div></div><div class="modalFoot"><button class="btn" onclick="closeModal('productModal')">Cancelar</button><button class="btn primary" onclick="saveGeneric('Produto','productModal')">Cadastrar produto</button></div></div></div>
+<div class="modal" id="clientModal"><div class="modalBox"><div class="head"><h3>👥 Novo cliente</h3><button class="modalClose" onclick="closeModal('clientModal')">×</button></div><div class="formgrid"><div class="field"><label>Nome completo</label><input placeholder="Nome"></div><div class="field"><label>CPF</label><input placeholder="000.000.000-00"></div><div class="field"><label>Telefone</label><input placeholder="(00) 00000-0000"></div><div class="field"><label>Data de nascimento</label><input type="date"></div><div class="field" style="grid-column:1/-1"><label>Observações</label><input placeholder="Observações"></div></div><div class="modalFoot"><button class="btn" onclick="closeModal('clientModal')">Cancelar</button><button class="btn primary" onclick="saveGeneric('Cliente','clientModal')">Cadastrar cliente</button></div></div></div>
+<div class="modal" id="employeeModal"><div class="modalBox"><div class="head"><h3>👤 Funcionário</h3><button class="modalClose" onclick="closeModal('employeeModal')">×</button></div><div class="formgrid"><div class="field"><label>Nome</label><input placeholder="Nome"></div><div class="field"><label>Usuário</label><input placeholder="usuario"></div><div class="field"><label>PIN</label><input type="password" placeholder="4 a 6 dígitos"></div><div class="field"><label>Cargo</label><select><option>Administrador</option><option>Gerente</option><option>Caixa</option></select></div><div class="field"><label>Comissão</label><input type="number" step=".1" value="0"></div><div class="field"><label>Status</label><select><option>Ativo</option><option>Inativo</option></select></div></div><div class="modalFoot"><button class="btn" onclick="closeModal('employeeModal')">Cancelar</button><button class="btn primary" onclick="saveGeneric('Funcionário','employeeModal')">Salvar funcionário</button></div></div></div>
+<div class="modal" id="supplierModal"><div class="modalBox"><div class="head"><h3>🚚 Fornecedor</h3><button class="modalClose" onclick="closeModal('supplierModal')">×</button></div><div class="formgrid"><div class="field"><label>Razão social</label><input placeholder="Empresa"></div><div class="field"><label>CNPJ</label><input placeholder="00.000.000/0001-00"></div><div class="field"><label>Contato</label><input placeholder="Nome"></div><div class="field"><label>Telefone</label><input placeholder="(00) 0000-0000"></div><div class="field"><label>Prazo médio</label><input placeholder="7 dias"></div><div class="field"><label>Observações</label><input placeholder="Observações"></div></div><div class="modalFoot"><button class="btn" onclick="closeModal('supplierModal')">Cancelar</button><button class="btn primary" onclick="saveGeneric('Fornecedor','supplierModal')">Salvar fornecedor</button></div></div></div>
+<div class="modal" id="purchaseModal"><div class="modalBox"><div class="head"><h3>🛍️ Nova compra</h3><button class="modalClose" onclick="closeModal('purchaseModal')">×</button></div><div class="formgrid"><div class="field"><label>Fornecedor</label><select><option>Distribuidora Sul</option><option>Atacado Central</option></select></div><div class="field"><label>Previsão de entrega</label><input type="date"></div><div class="field" style="grid-column:1/-1"><label>Produtos</label><input placeholder="Digite ou bipe produtos para adicionar"></div><div class="field"><label>Observação</label><input placeholder="Observação"></div><div class="field"><label>Total</label><input value="R$ 0,00" readonly></div></div><div class="modalFoot"><button class="btn" onclick="closeModal('purchaseModal')">Cancelar</button><button class="btn primary" onclick="saveGeneric('Pedido de compra','purchaseModal')">Criar pedido</button></div></div></div>
+<div class="modal" id="promotionModal"><div class="modalBox"><div class="head"><h3>🎯 Criar promoção</h3><button class="modalClose" onclick="closeModal('promotionModal')">×</button></div><div class="formgrid"><div class="field"><label>Nome da promoção</label><input placeholder="Ex.: Leve 3 pague 2"></div><div class="field"><label>Tipo</label><select><option>Desconto percentual</option><option>Desconto em R$</option><option>Leve X pague Y</option><option>Combo</option></select></div><div class="field"><label>Produto/categoria</label><input placeholder="Buscar"></div><div class="field"><label>Desconto</label><input placeholder="10%"></div><div class="field"><label>Início</label><input type="date"></div><div class="field"><label>Fim</label><input type="date"></div></div><div class="modalFoot"><button class="btn" onclick="closeModal('promotionModal')">Cancelar</button><button class="btn primary" onclick="saveGeneric('Promoção','promotionModal')">Salvar promoção</button></div></div></div>
+<div class="modal" id="cashModal"><div class="modalBox"><div class="head"><h3>💰 Movimentar caixa</h3><button class="modalClose" onclick="closeModal('cashModal')">×</button></div><div class="quickGrid"><button class="quick" onclick="cashAction('Suprimento')">＋ Suprimento</button><button class="quick" onclick="cashAction('Sangria')">− Sangria</button><button class="quick" onclick="cashAction('Fechamento')">✓ Fechar caixa</button></div><div class="field" style="margin-top:14px"><label>Valor</label><input id="cashValue" type="number" step=".01" placeholder="0,00"></div><div class="modalFoot"><button class="btn" onclick="closeModal('cashModal')">Cancelar</button><button class="btn primary" onclick="cashAction('Movimentação')">Registrar</button></div></div></div>
+<div class="modal" id="discountModal"><div class="modalBox"><div class="head"><h3>🏷️ Desconto</h3><button class="modalClose" onclick="closeModal('discountModal')">×</button></div><div class="formgrid"><div class="field"><label>Tipo</label><select><option>Percentual</option><option>Valor</option></select></div><div class="field"><label>Desconto</label><input type="number" step=".01" placeholder="0"></div></div><div class="modalFoot"><button class="btn" onclick="closeModal('discountModal')">Cancelar</button><button class="btn primary" onclick="closeModal('discountModal');showToast('Desconto aplicado')">Aplicar</button></div></div></div>
+<div class="modal" id="cpfModal"><div class="modalBox"><div class="head"><h3>🧾 CPF na nota</h3><button class="modalClose" onclick="closeModal('cpfModal')">×</button></div><div class="field"><label>CPF</label><input id="cpfInput" placeholder="000.000.000-00" inputmode="numeric"></div><div class="modalFoot"><button class="btn" onclick="closeModal('cpfModal')">Cancelar</button><button class="btn primary" onclick="closeModal('cpfModal');showToast('CPF informado na venda')">Confirmar CPF</button></div></div></div>
+<div class="modal" id="mixedModal"><div class="modalBox"><div class="head"><h3>↔️ Pagamento misto</h3><button class="modalClose" onclick="closeModal('mixedModal')">×</button></div><p class="muted">Divida o total entre duas ou mais formas de pagamento.</p><div class="formgrid"><div class="field"><label>PIX</label><input type="number" step=".01" placeholder="0,00"></div><div class="field"><label>Dinheiro</label><input type="number" step=".01" placeholder="0,00"></div><div class="field"><label>Cartão</label><input type="number" step=".01" placeholder="0,00"></div></div><div class="modalFoot"><button class="btn" onclick="closeModal('mixedModal')">Cancelar</button><button class="btn primary" onclick="closeModal('mixedModal');finishSale('Misto')">Finalizar pagamento</button></div></div></div>
+<div class="modal" id="suspendModal"><div class="modalBox"><div class="head"><h3>⏸ Suspender venda</h3><button class="modalClose" onclick="closeModal('suspendModal')">×</button></div><p class="muted">A venda atual será guardada para recuperação posterior.</p><div class="field"><label>Identificação</label><input id="suspendName" placeholder="Ex.: Cliente aguardando cartão"></div><div class="modalFoot"><button class="btn" onclick="closeModal('suspendModal')">Cancelar</button><button class="btn primary" onclick="closeModal('suspendModal');showToast('Venda suspensa com sucesso')">Suspender</button></div></div></div>
+<div class="modal" id="aiModal"><div class="modalBox"><div class="head"><h3>🤖 Assistente do Mercado</h3><button class="modalClose" onclick="closeModal('aiModal')">×</button></div><p class="muted">Faça uma pergunta sobre os dados do mercado.</p><div class="quickGrid"><button class="quick" onclick="aiAnswer('vendas')">O que mais vendeu?</button><button class="quick" onclick="aiAnswer('compra')">O que devo comprar?</button><button class="quick" onclick="aiAnswer('lucro')">Como está meu lucro?</button></div><div id="aiAnswer" class="alert" style="margin-top:12px">Escolha uma pergunta acima.</div><div class="modalFoot"><button class="btn" onclick="closeModal('aiModal')">Fechar</button></div></div></div>
+<div class="modal" id="stockEntryModal"><div class="modalBox"><div class="head"><h3>📥 Entrada de estoque</h3><button class="modalClose" onclick="closeModal('stockEntryModal')">×</button></div><div class="formgrid"><div class="field"><label>Produto</label><input placeholder="Buscar produto"></div><div class="field"><label>Quantidade</label><input type="number" placeholder="0"></div><div class="field"><label>Custo unitário</label><input type="number" step=".01" placeholder="0,00"></div><div class="field"><label>Validade</label><input type="date"></div></div><div class="modalFoot"><button class="btn" onclick="closeModal('stockEntryModal')">Cancelar</button><button class="btn primary" onclick="saveGeneric('Entrada de estoque','stockEntryModal')">Registrar entrada</button></div></div></div>
+<div class="modal" id="adjustModal"><div class="modalBox"><div class="head"><h3>🔧 Ajuste de estoque</h3><button class="modalClose" onclick="closeModal('adjustModal')">×</button></div><div class="formgrid"><div class="field"><label>Produto</label><input placeholder="Buscar produto"></div><div class="field"><label>Quantidade atual</label><input value="0" readonly></div><div class="field"><label>Nova quantidade</label><input type="number" placeholder="0"></div><div class="field"><label>Motivo</label><select><option>Inventário</option><option>Perda</option><option>Avaria</option><option>Correção</option></select></div></div><div class="modalFoot"><button class="btn" onclick="closeModal('adjustModal')">Cancelar</button><button class="btn primary" onclick="saveGeneric('Ajuste de estoque','adjustModal')">Salvar ajuste</button></div></div></div>
+<div class="modal" id="inventoryModal"><div class="modalBox"><div class="head"><h3>📋 Inventário</h3><button class="modalClose" onclick="closeModal('inventoryModal')">×</button></div><p class="muted">Inicie uma contagem de estoque. Os ajustes poderão ser confirmados ao final.</p><div class="row"><span>Produtos a contar<small>1.284 itens</small></span><b>0%</b></div><div class="modalFoot"><button class="btn" onclick="closeModal('inventoryModal')">Cancelar</button><button class="btn primary" onclick="closeModal('inventoryModal');showToast('Inventário iniciado')">Iniciar inventário</button></div></div></div>
+<div class="modal" id="saleDetailModal"><div class="modalBox"><div class="head"><h3>🧾 Venda #00482</h3><button class="modalClose" onclick="closeModal('saleDetailModal')">×</button></div><div class="list"><div class="row"><span>Coca-Cola 2L<small>2 × R$ 9,90</small></span><b>R$ 19,80</b></div><div class="row"><span>Arroz 5kg<small>1 × R$ 28,90</small></span><b>R$ 28,90</b></div><div class="row"><span>Leite Integral 1L<small>7 × R$ 5,49</small></span><b>R$ 38,43</b></div></div><div class="totalLine grand"><span>Total</span><b>R$ 87,13</b></div><div class="modalFoot"><button class="btn" onclick="showToast('Comprovante preparado')">Imprimir</button><button class="btn" onclick="closeModal('saleDetailModal')">Fechar</button></div></div></div>
+<div class="modal" id="clientDetailModal"><div class="modalBox"><div class="head"><h3>👤 Mariana Silva</h3><button class="modalClose" onclick="closeModal('clientDetailModal')">×</button></div><div class="cards"><div class="card metric">💵<strong>R$ 1.840</strong><span>Total gasto</span></div><div class="card metric">🛒<strong>26</strong><span>Compras</span></div></div><div class="row" style="margin-top:12px"><span>Produto favorito<small>Leite Integral 1L</small></span><b>42 un.</b></div><div class="row"><span>Cashback<small>Saldo disponível</small></span><b class="green">R$ 18,40</b></div></div></div>
+<div class="modal" id="purchaseDetailModal"><div class="modalBox"><div class="head"><h3>🛍️ Pedido #PC-0192</h3><button class="modalClose" onclick="closeModal('purchaseDetailModal')">×</button></div><div class="row"><span>Fornecedor<small>Distribuidora Sul</small></span><b>32 itens</b></div><div class="row"><span>Total<small>Entrega prevista 25/09</small></span><b>R$ 3.840</b></div><div class="modalFoot"><button class="btn" onclick="closeModal('purchaseDetailModal')">Fechar</button><button class="btn primary" onclick="showToast('Pedido marcado como recebido');closeModal('purchaseDetailModal')">Receber mercadoria</button></div></div></div>
+<div class="modal" id="financeModal"><div class="modalBox"><div class="head"><h3>💰 Nova movimentação</h3><button class="modalClose" onclick="closeModal('financeModal')">×</button></div><div class="formgrid"><div class="field"><label>Tipo</label><select><option>Conta a pagar</option><option>Conta a receber</option><option>Despesa</option><option>Receita</option></select></div><div class="field"><label>Valor</label><input type="number" step=".01" placeholder="0,00"></div><div class="field"><label>Descrição</label><input placeholder="Descrição"></div><div class="field"><label>Vencimento</label><input type="date"></div></div><div class="modalFoot"><button class="btn" onclick="closeModal('financeModal')">Cancelar</button><button class="btn primary" onclick="saveGeneric('Movimentação financeira','financeModal')">Salvar</button></div></div></div>
+
+<div class="cameraModal" id="cameraModal">
+  <div class="cameraBox">
+    <div class="head"><h3>📷 Ler código de barras</h3><button class="btn" onclick="closeCamera()">Fechar</button></div>
+    <div class="cameraViewport"><video id="cameraVideo" playsinline></video><div class="scanFrame"></div></div>
+    <div id="cameraStatus" class="scannerStatus">Aponte a câmera para o código de barras.</div>
+    <div class="cameraActions"><button class="btn" onclick="stopCamera()">Parar câmera</button></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<script>
+const names={
+dashboard:["Dashboard","Visão geral do seu comércio"],
+pdv:["PDV","Caixa, vendas e pagamentos"],
+produtos:["Produtos","Cadastro e gestão de produtos"],
+estoque:["Estoque","Controle de estoque e alertas"],
+vendas:["Vendas","Histórico e acompanhamento de vendas"],
+clientes:["Clientes","Cadastro e histórico de clientes"],
+funcionarios:["Funcionários","Equipe, cargos e permissões"],
+fornecedores:["Fornecedores","Seus fornecedores e contatos"],
+compras:["Compras","Pedidos e entradas de mercadorias"],
+financeiro:["Financeiro","Contas, receitas e despesas"],
+relatorios:["Relatórios","Indicadores e relatórios do comércio"],
+promocoes:["Promoções","Ofertas e campanhas"],
+config:["Configurações","Configurações do comércio"]
+};
+const sidebar=document.getElementById("sidebar");
+const pageTitle=document.getElementById("pageTitle");
+const pageSubtitle=document.getElementById("pageSubtitle");
+const toast=document.getElementById("toast");
+
+function navigate(id){
+ document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+ const page=document.getElementById(id);
+ if(page) page.classList.add("active");
+ document.querySelectorAll("#nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===id));
+ pageTitle.textContent=names[id][0];
+ pageSubtitle.textContent=names[id][1];
+ sidebar.classList.remove("open");
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+document.querySelectorAll("#nav button").forEach(btn=>btn.addEventListener("click",()=>navigate(btn.dataset.page)));
+document.getElementById("menuBtn").addEventListener("click",()=>sidebar.classList.toggle("open"));
+
+const catalog = {
+  "7894900011517": {name:"Coca-Cola 2L", price:9.90},
+  "7894900010107": {name:"Arroz 5kg", price:28.90},
+  "7891001": {name:"Leite Integral 1L", price:5.49},
+  "7891002": {name:"Arroz 5kg", price:28.90},
+  "7891003": {name:"Óleo 900ml", price:7.99},
+  "7891004": {name:"Feijão 1kg", price:8.49}
+};
+let cameraStream = null;
+let scanTimer = null;
+
+function handleBarcodeKey(event){
+  if(event.key !== "Enter") return;
+  event.preventDefault();
+  const code = event.target.value.trim();
+  if(code) addBarcode(code);
+}
+
+function addBarcode(code){
+  const product = catalog[code] || {name:"Produto " + code, price:12.90};
+  let row = document.querySelector('.productRow[data-code="'+CSS.escape(code)+'"]');
+
+  if(row){
+    const qty = Number(row.dataset.qty) + 1;
+    row.dataset.qty = qty;
+    row.querySelector(".q").textContent = qty;
+    updateLineTotal(row);
+    setScannerStatus("Produto bipado novamente: " + product.name + " • quantidade " + qty, true);
+  }else{
+    row = document.createElement("div");
+    row.className = "row productRow";
+    row.dataset.code = code;
+    row.dataset.price = product.price.toFixed(2);
+    row.dataset.name = product.name;
+    row.dataset.qty = "1";
+    row.innerHTML =
+      '<span><b>'+escapeHtml(product.name)+'</b><small>'+escapeHtml(code)+' • R$ '+brl(product.price)+' cada</small></span>' +
+      '<div class="qty"><button onclick="changeQty(this,-1)">−</button><b class="q">1</b><button onclick="changeQty(this,1)">+</button><strong class="lineTotal">R$ '+brl(product.price)+'</strong></div>';
+    document.getElementById("cart").appendChild(row);
+    setScannerStatus("Produto adicionado: " + product.name, true);
+  }
+  updateTotals();
+  const input = document.getElementById("barcode");
+  input.value = "";
+  input.focus();
+}
+
+function changeQty(button, delta){
+  const row = button.closest(".productRow");
+  let qty = Number(row.dataset.qty) + delta;
+  if(qty <= 0){ row.remove(); }
+  else{
+    row.dataset.qty = qty;
+    row.querySelector(".q").textContent = qty;
+    updateLineTotal(row);
+  }
+  updateTotals();
+}
+
+function updateLineTotal(row){
+  const total = Number(row.dataset.price) * Number(row.dataset.qty);
+  row.querySelector(".lineTotal").textContent = "R$ " + brl(total);
+}
+
+function updateTotals(){
+  let total = 0, items = 0;
+  document.querySelectorAll("#cart .productRow").forEach(row=>{
+    const qty = Number(row.dataset.qty), price = Number(row.dataset.price);
+    total += qty * price; items += qty;
+  });
+  document.getElementById("cartItems").textContent = items;
+  document.getElementById("subtotal").textContent = "R$ " + brl(total);
+  document.getElementById("grandTotal").textContent = "R$ " + brl(total);
+}
+
+function brl(n){ return Number(n).toFixed(2).replace(".",","); }
+function escapeHtml(s){ return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m])); }
+
+function setScannerStatus(msg, ok=false){
+  const el = document.getElementById("scannerStatus");
+  el.textContent = msg;
+  el.className = "scannerStatus " + (ok ? "ok" : "warn");
+}
+
+async function openCamera(){
+  const modal = document.getElementById("cameraModal");
+  modal.classList.add("open");
+  const video = document.getElementById("cameraVideo");
+  const status = document.getElementById("cameraStatus");
+  if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+    status.textContent = "Seu navegador não permite acesso à câmera. Use um leitor USB/Bluetooth.";
+    return;
+  }
+  if(!("BarcodeDetector" in window)){
+    status.textContent = "Leitura pela câmera não é suportada neste navegador. O leitor USB/Bluetooth continua funcionando normalmente.";
+    try{
+      cameraStream = await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:"environment"}}});
+      video.srcObject = cameraStream; await video.play();
+    }catch(e){}
+    return;
+  }
+  try{
+    cameraStream = await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:"environment"}}});
+    video.srcObject = cameraStream;
+    await video.play();
+    const detector = new BarcodeDetector({formats:["ean_13","ean_8","upc_a","upc_e","code_128","code_39"]});
+    clearInterval(scanTimer);
+    scanTimer = setInterval(async()=>{
+      if(video.readyState < 2) return;
+      try{
+        const codes = await detector.detect(video);
+        if(codes.length){
+          const value = codes[0].rawValue;
+          if(value){
+            addBarcode(value);
+            closeCamera();
+          }
+        }
+      }catch(e){}
+    },250);
+    status.textContent = "Câmera ativa — aponte para o código de barras.";
+  }catch(e){
+    status.textContent = "Não foi possível abrir a câmera. Verifique a permissão do navegador.";
+  }
+}
+
+function stopCamera(){
+  clearInterval(scanTimer);
+  scanTimer = null;
+  if(cameraStream){ cameraStream.getTracks().forEach(t=>t.stop()); cameraStream=null; }
+  const video=document.getElementById("cameraVideo");
+  video.srcObject=null;
+}
+
+function closeCamera(){
+  stopCamera();
+  document.getElementById("cameraModal").classList.remove("open");
+}
+
+function showToast(message){
+ toast.textContent=message;
+ toast.classList.add("show");
+ clearTimeout(window._toast);
+ window._toast=setTimeout(()=>toast.classList.remove("show"),2200);
+}
+
+function openModal(id){const el=document.getElementById(id);if(el)el.classList.add("open")}
+function closeModal(id){const el=document.getElementById(id);if(el)el.classList.remove("open")}
+document.querySelectorAll(".modal").forEach(m=>m.addEventListener("click",e=>{if(e.target===m)m.classList.remove("open")}));
+function saveGeneric(label,id){closeModal(id);showToast(label+" salvo com sucesso");}
+function cashAction(type){closeModal("cashModal");showToast(type+" registrado no caixa");}
+function finishSale(method){
+  const total=Number(document.getElementById("grandTotal").textContent.replace(/[^\d,]/g,"").replace(".","").replace(",","."));
+  if(!total){showToast("Adicione produtos ao carrinho antes de finalizar");return}
+  showToast("Venda finalizada em "+method+" · R$ "+brl(total));
+  clearCart();
+}
+function clearCart(){const cart=document.getElementById("cart");if(cart)cart.innerHTML="";updateTotals();const e=document.getElementById("cartEmpty");if(e)e.style.display="block";showToast("Carrinho limpo")}
+function openProductPicker(){const code=prompt("Digite o código de barras do produto:");if(code)addBarcode(code.trim())}
+function filterTable(input,id){const q=input.value.toLowerCase();document.querySelectorAll("#"+id+" tbody tr").forEach(r=>r.style.display=r.innerText.toLowerCase().includes(q)?"":"none")}
+function deleteRow(btn){if(confirm("Excluir este item?")){btn.closest("tr").remove();showToast("Item excluído")}}
+function editRow(){openModal("productModal")}
+function generateReport(name){showToast("Relatório de "+name+" gerado")}
+function aiAnswer(type){const a=document.getElementById("aiAnswer");a.innerHTML=type==="vendas"?"🥛 <b>Leite Integral 1L</b> foi o produto mais vendido esta semana, com 126 unidades.":type==="compra"?"📦 Recomendo comprar <b>60 unidades de Leite Integral</b> e <b>40 unidades de Arroz 5kg</b> para manter cobertura de estoque.":"💰 A margem média atual está em <b>45,4%</b>. Bebidas e mercearia concentram a maior parte do resultado.";}
+// Keep scanner status behavior from the original version and improve cart empty state.
+const originalUpdateTotals = updateTotals;
+updateTotals = function(){
+  originalUpdateTotals();
+  const empty=document.getElementById("cartEmpty");
+  const count=document.querySelectorAll("#cart .productRow").length;
+  if(empty) empty.style.display=count?"none":"block";
+}
+
+</script>
+</body>
+</html>
